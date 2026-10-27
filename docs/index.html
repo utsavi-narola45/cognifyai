@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CognifyAI Demo</title>
+<style>
+  :root { --bg:#0b1020; --fg:#e8ecf5; --muted:#9aa6c0; --card:#131a30; --accent:#3dd9b4; --on:#04251d; }
+  body.light { --bg:#f4f1ea; --fg:#14202e; --muted:#5c6b7a; --card:#ffffff; --accent:#0f8f78; --on:#ffffff; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; transition:background .2s,color .2s; }
+  header { max-width:1100px; margin:0 auto; padding:48px 20px 16px; }
+  h1 { margin:0 0 8px; font-size:2.4rem; }
+  h1 span { color:var(--accent); }
+  p.lead { color:var(--muted); max-width:720px; margin:0 0 20px; }
+  .row { display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+  a.btn { display:inline-block; padding:10px 18px; border-radius:10px; background:var(--accent); color:var(--on); font-weight:600; text-decoration:none; }
+  .tabs { display:inline-flex; padding:4px; border-radius:12px; background:var(--card); }
+  .tabs button { border:0; background:transparent; color:var(--muted); font:inherit; font-weight:600; padding:8px 18px; border-radius:9px; cursor:pointer; }
+  .tabs button[aria-pressed="true"] { background:var(--accent); color:var(--on); }
+  main { max-width:1100px; margin:0 auto; padding:16px 20px 64px; display:grid; gap:28px; }
+  .theme { display:none; gap:28px; }
+  .theme.show { display:grid; }
+  figure { margin:0; background:var(--card); border-radius:16px; padding:14px; box-shadow:0 1px 3px rgba(0,0,0,.15); }
+  figure img { width:100%; height:auto; display:block; border-radius:10px; }
+  figcaption { color:var(--muted); padding:10px 4px 2px; font-size:.95rem; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Cognify<span>AI</span> demo</h1>
+  <p class="lead">Chat with your documents privately. Answers come with the exact source passages, and the language model runs locally on your own machine.</p>
+  <div class="row">
+    <a class="btn" href="https://github.com/utsavi-narola45/cognifyai">View repository</a>
+    <div class="tabs" role="group" aria-label="Theme">
+      <button id="b-dark" aria-pressed="true">Dark theme</button>
+      <button id="b-light" aria-pressed="false">Light theme</button>
+    </div>
+  </div>
+</header>
+<main>
+  <section id="dark" class="theme show">
+    <figure><img src="screenshots/06-welcome-dark.png" alt="Welcome screen, dark theme"><figcaption>Welcome screen</figcaption></figure>
+    <figure><img src="screenshots/04-chat-dark.png" alt="Chat, dark theme"><figcaption>Document questions answered with citations, plus a direct library inventory</figcaption></figure>
+    <figure><img src="screenshots/05-evidence-dark.png" alt="Evidence drawer, dark theme"><figcaption>Evidence drawer: the exact passages behind every answer, with relevance scores</figcaption></figure>
+  </section>
+  <section id="light" class="theme">
+    <figure><img src="screenshots/01-welcome-light.png" alt="Welcome screen, light theme"><figcaption>Welcome screen</figcaption></figure>
+    <figure><img src="screenshots/03-chat-light.png" alt="Chat, light theme"><figcaption>Casual chat and document answers</figcaption></figure>
+    <figure><img src="screenshots/02-evidence-light.png" alt="Evidence drawer, light theme"><figcaption>Evidence drawer (personal details redacted)</figcaption></figure>
+  </section>
+</main>
+<script>
+  function setTheme(t){
+    document.body.classList.toggle("light", t==="light");
+    document.getElementById("dark").classList.toggle("show", t==="dark");
+    document.getElementById("light").classList.toggle("show", t==="light");
+    document.getElementById("b-dark").setAttribute("aria-pressed", t==="dark");
+    document.getElementById("b-light").setAttribute("aria-pressed", t==="light");
+  }
+  document.getElementById("b-dark").onclick=function(){setTheme("dark")};
+  document.getElementById("b-light").onclick=function(){setTheme("light")};
+</script>
+</body>
+</html>
